@@ -1,0 +1,72 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class='container'>
+        <div class="navbar-header">
+            <a href="#" id='title' class="navbar-brand">Events</a>
+
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class='collapse navbar-collapse' id='myNav'>
+            <ul class='nav navbar-nav navbar-right'>
+                <li><a href="/users/<%= current_user.id %>">Events Dashboard</a></li>
+                <li><a href="/sessions/destroy">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id='event_info' class='container'>
+    <div class='row'>
+        <div class ='col-xs-12 col-sm-7'>
+        <h1><%= @event.name %></h1>
+
+        <p>Host : <%= @event.user.first_name %> <%= @event.user.last_name %></p>
+        <p>Date : <%= @event.date %></p>
+        <p>Location : <%= @event.location %> <%= @event.state %></p>
+        <h3>People who are joining this event: </h3>
+            <table class='table table-striped table-bordered'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <% @users.each do |u| %>
+                    <tr>
+                        <td><%= u.first_name %> <%= u.last_name %></td>
+                        <td><%= u.location %></td>
+                        <td><%= u.state %></td>
+                    </tr>
+            <% end %>
+                </tbody>
+            </table>
+            <div>
+            <img id="map_image" class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @event.location %>,<%= @event.state %>&zoom=12&size=600x400&sensor=false"/>
+            </div>
+        </div>
+        <div class ='col-xs-12 col-sm-4 col-sm-offset-1'>
+        <h2>Discussion about this event</h2>
+
+            <div class="chat">
+        <% @comment.each do |c| %>
+                <p> <%= c.user.first_name %> says: <%= c.comment %></p>
+                <hr>
+        <% end %>
+            </div>
+
+            <form action= '/comments' method='post'>
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <input type='hidden' name="event_id" value="<%= @event.id %>">
+            <label for='comment'>Add Comment</label><br>
+            <textarea id='comment' name='comment' rows='5' cols='30' ></textarea><br>
+            <input type='submit' value='Add a Comment'>
+
+        </form>
+
+        </div>
+    </div>
+</div>

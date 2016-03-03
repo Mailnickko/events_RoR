@@ -1,0 +1,62 @@
+<div class='container'>
+    <h1>Welcome</h1>
+    <div class='row'>
+        
+            <div class='col-xs-12 col-sm-6'>
+                <h3>Register</h3>
+                <form role='form' action = "/users" method ="post">
+                    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                            <input class="form-control" type='text' name='first_name' id='first_name'>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                            <input class="form-control" type='text' name='last_name' id='last_name'>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                            <input class="form-control" type='text' name='email' id='email'>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                            <input class="form-control" type='text' name='location' id='location'>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                            <select name='state' id='state'> 
+                                <option value='CA'>CA</option>
+                                <option value='WA'>WA</option>
+                                <option value='NY'>NY</option>
+                                <option value='NV'>NV</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label for='password'>Password</label>
+                            <input class="form-control" type='password' name='password' id='password'>
+                    </div>
+                    <div class="form-group">
+                        <label for='password_confirmation'>Password Confirmation</label>
+                            <input class="form-control" type='password' name='password_confirmation' id='password_confirmation'>
+                    </div>
+                        <input class='btn btn-success' type='submit' value='Register'>
+                </form>
+            </div>
+
+            <div class='col-xs-12 col-sm-6'>
+                <h3>Login</h3>
+                <form role='form' action='/sessions' method ='post'>
+                    <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+                <div class="form-group">
+                    <label for='email'>Email</label>
+                        <input class="form-control" id='email' name='email' type='text'>
+                </div>
+                <div class="form-group">
+                    <label for='password'>Password</label>
+                        <input class="form-control" id='password' name='password' type='password'>
+                </div>
+                        <input class='btn btn-primary' type='submit' value='Log In'>
+                </form>
+            </div>
+    </div>
+</div>

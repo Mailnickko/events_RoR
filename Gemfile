@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'hirb'
+gem 'nifty-generators'
+gem 'bcrypt'
+gem 'bootstrap-sass'
 gem 'rails', '4.1.8'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -11,11 +15,18 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
-group :test, :development do
-  gem 'rspec-rails'
-  gem 'database_cleaner'
+group :production do
+  gem 'rails_12factor'
 end
 
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'database_cleaner'
+end
+group :production do
+    gem 'pg'
+end
 group :test do
   gem 'capybara'
 end

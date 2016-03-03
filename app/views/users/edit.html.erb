@@ -1,0 +1,54 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class='container'>
+        <div class="navbar-header">
+            <a href="#" id='title' class="navbar-brand">Events</a>
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class='collapse navbar-collapse'>
+            <ul class='nav navbar-nav navbar-right'>
+                <li><a href="/users/<%= @user.id %>">Events Dashboard</a></li>
+                <li><a href="/sessions/destroy">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id='edit_profile' class='container'>
+    <h1>Edit your Profile</h1>
+        <form action = "/users/<%= @user.id %>" method ="post">
+            <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+            <input type='hidden' name='_method' value='patch'>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                    <input class="form-control" type='text' name='first_name' id='first_name' value= '<%= @user.first_name %>'>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                    <input class="form-control" type='text' name='last_name' id='last_name' value= '<%= @user.last_name %>'>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                    <input class="form-control" type='text' name='email' id='email' value= '<%= @user.email %>'>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                    <input class="form-control" type='text' name='location' id='location' value= '<%= @user.location %>'>
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <select class="form-control" name='state' id='state' value= '<%= @user.state %>'> 
+                    <option value='CA'>CA</option>
+                    <option value='WA'>WA</option>
+                    <option value='NY'>NY</option>
+                    <option value='NV'>NV</option>
+                </select>
+            </div>
+            <input type='submit' value='Update Records'>
+        </form>
+</div>
+
+
